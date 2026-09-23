@@ -36,7 +36,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -98,7 +97,6 @@ fun AnimeGirlsApp(
     val context = remember(baseContext, settings.localeTag, systemLocaleTag) {
         baseContext.createConfigurationContext(localizedConfiguration)
     }
-    val uriHandler = LocalUriHandler.current
     val updateState by appViewModel.updateState.collectAsStateWithLifecycle()
     val navigate: (Destination) -> Unit = { target ->
         if (target == Destination.UPLOAD && user == null) {
@@ -220,7 +218,7 @@ fun AnimeGirlsApp(
                 dismissButton = { androidx.compose.material3.TextButton(onClick = appViewModel::dismissUpdate) { Text(stringResource(R.string.action_later)) } },
                 confirmButton = {
                     androidx.compose.material3.Button(onClick = {
-                        uriHandler.openUri(update.downloadUrl ?: update.releaseUrl)
+                        BrowserLauncher.open(context, update.downloadUrl ?: update.releaseUrl)
                         appViewModel.dismissUpdate()
                     }) { Text(stringResource(R.string.action_download_update)) }
                 },

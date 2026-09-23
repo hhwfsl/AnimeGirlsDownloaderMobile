@@ -32,7 +32,6 @@ import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Folder
 import androidx.compose.material.icons.filled.PhotoCamera
 import androidx.compose.material.icons.filled.Refresh
-import androidx.compose.material.icons.filled.Source
 import androidx.compose.material3.Button
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.CircularProgressIndicator
@@ -66,7 +65,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.IntOffset
@@ -80,6 +79,7 @@ import top.kafuumiaki.animegirlsdownloader.core.model.ContentFilter
 import top.kafuumiaki.animegirlsdownloader.core.model.ThemeMode
 import top.kafuumiaki.animegirlsdownloader.data.AvatarImageProcessor
 import top.kafuumiaki.animegirlsdownloader.ui.AppViewModel
+import top.kafuumiaki.animegirlsdownloader.ui.BrowserLauncher
 import top.kafuumiaki.animegirlsdownloader.ui.UpdateUiState
 import java.io.File
 import kotlinx.coroutines.Dispatchers
@@ -94,7 +94,6 @@ fun SettingsScreen(appViewModel: AppViewModel, onLogin: () -> Unit, modifier: Mo
     val user by appViewModel.user.collectAsStateWithLifecycle()
     val update by appViewModel.updateState.collectAsStateWithLifecycle()
     val context = LocalContext.current
-    val uriHandler = LocalUriHandler.current
     var editName by remember { mutableStateOf(false) }
     var pendingAvatar by remember { mutableStateOf<Uri?>(null) }
     var profileSaving by remember { mutableStateOf(false) }
@@ -267,11 +266,11 @@ fun SettingsScreen(appViewModel: AppViewModel, onLogin: () -> Unit, modifier: Mo
                 )
                 HorizontalDivider(Modifier.padding(vertical = 4.dp, horizontal = 48.dp))
                 Row(
-                    Modifier.fillMaxWidth().clickable { uriHandler.openUri(BuildConfig.GITHUB_PROJECT_URL) }.padding(8.dp),
+                    Modifier.fillMaxWidth().clickable { BrowserLauncher.open(context, BuildConfig.GITHUB_PROJECT_URL) }.padding(8.dp),
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    Icon(Icons.Default.Source, stringResource(R.string.content_description_github))
+                    Icon(painterResource(R.drawable.ic_github), stringResource(R.string.content_description_github))
                     Text(stringResource(R.string.settings_project), Modifier.padding(start = 8.dp), color = MaterialTheme.colorScheme.primary)
                 }
             }

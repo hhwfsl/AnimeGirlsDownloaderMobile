@@ -2,6 +2,14 @@
 
 本项目遵循 [Semantic Versioning](https://semver.org/)。
 
+## 1.2.4
+
+- 重写项目 README，统一项目说明、构建方式、配置项和数据安全信息。
+- 设置页使用标准 GitHub 图标，不再使用通用源码图标。
+- GitHub 项目及更新下载链接固定通过浏览器打开，避免跳转到 GitHub 应用。
+- 修复登录后业务 API 的认证头被错误发送至 GitHub，导致版本检查失败的问题。
+- GitHub 尚未发布 Release 时，手动检查更新会显示当前已是最新版本。
+
 ## 1.2.3
 
 - 将设置页的 GitHub 项目链接切换到独立的 AnimeGirlsDownloaderMobile 仓库。
