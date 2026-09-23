@@ -93,4 +93,4 @@ app/src/main/java/top/kafuumiaki/animegirlsdownloader/
 
 ## 许可证
 
-许可证以 AnimeGirlsDownloader 主项目的授权文件为准。
+本项目基于 [MIT License](LICENSE.txt) 发布。

@@ -14,16 +14,16 @@ android {
         applicationId = "top.kafuumiaki.animegirlsdownloader"
         minSdk = 26
         targetSdk = 36
-        versionCode = 6
-        versionName = "1.2.2"
+        versionCode = 7
+        versionName = "1.2.3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
 
         buildConfigField("String", "API_BASE_URL", "\"https://kafuumiaki.top/api/\"")
         buildConfigField("String", "PUBLIC_IMAGE_BASE_URL", "\"https://kafuumiaki.top/api/Image/images/\"")
-        buildConfigField("String", "GITHUB_LATEST_RELEASE_URL", "\"https://api.github.com/repos/hhwfsl/AnimeGirlsDownloader/releases/latest\"")
-        buildConfigField("String", "GITHUB_PROJECT_URL", "\"https://github.com/hhwfsl/AnimeGirlsDownloader\"")
+        buildConfigField("String", "GITHUB_LATEST_RELEASE_URL", "\"https://api.github.com/repos/hhwfsl/AnimeGirlsDownloaderMobile/releases/latest\"")
+        buildConfigField("String", "GITHUB_PROJECT_URL", "\"https://github.com/hhwfsl/AnimeGirlsDownloaderMobile\"")
     }
 
     buildTypes {

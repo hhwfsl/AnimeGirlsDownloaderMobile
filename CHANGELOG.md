@@ -2,6 +2,12 @@
 
 本项目遵循 [Semantic Versioning](https://semver.org/)。
 
+## 1.2.3
+
+- 将设置页的 GitHub 项目链接切换到独立的 AnimeGirlsDownloaderMobile 仓库。
+- 将应用内版本更新检查切换到移动端仓库的 GitHub Releases。
+- 补充移动端项目的 MIT 许可证文件。
+
 ## 1.2.2
 
 - 修复本地化 Context 覆盖 Activity 结果注册器，导致设置页和上传页注册图片或文件夹选择器时退出应用的问题。
