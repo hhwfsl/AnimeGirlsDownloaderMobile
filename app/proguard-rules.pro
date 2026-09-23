@@ -1,0 +1,4 @@
+-keepattributes *Annotation*
+-keepclassmembers class **$$serializer { *; }
+-keep,includedescriptorclasses class top.kafuumiaki.animegirlsdownloader.core.network.**$$serializer { *; }
+-dontwarn org.bouncycastle.**
