@@ -48,8 +48,9 @@ class DownloadQueueProcessor(
                 } else {
                     val detail = error.message ?: error.javaClass.simpleName
                     dao.updateProgress(task.taskId, DownloadStatus.FAILED, current.bytesRead, current.totalBytes, detail)
-                    notifications.failure(task.fileName)
-                    events.emit(DownloadEvent.Failure(task.fileName, detail))
+                    val fileName = outputFileName(task)
+                    notifications.failure(fileName)
+                    events.emit(DownloadEvent.Failure(fileName, detail))
                 }
             } finally {
                 activeCalls.remove(task.taskId)
@@ -67,11 +68,10 @@ class DownloadQueueProcessor(
             val body = response.body ?: throw IOException("Empty response")
             val total = body.contentLength()
             val mime = body.contentType()?.toString() ?: "application/octet-stream"
-            val fileName = response.header("Content-Disposition")
-                ?.substringAfter("filename=", "")
-                ?.trim('"', '\'', ' ')
-                ?.takeIf { it.isNotBlank() }
-                ?: task.fileName
+            // The server can send both filename and RFC 5987 filename* parameters.
+            // The client owns the stable download name, so response headers must not
+            // be able to append parameters or change the image ID based filename.
+            val fileName = outputFileName(task)
             val target = createTarget(task.destinationTreeUri, fileName, mime)
             try {
                 target.stream.use { output ->
@@ -104,6 +104,8 @@ class DownloadQueueProcessor(
             }
         }
     }
+
+    private fun outputFileName(task: DownloadTaskEntity): String = "${task.imageId}.png"
 
     private fun createTarget(treeUri: String?, fileName: String, mime: String): OutputTarget {
         if (!treeUri.isNullOrBlank()) {

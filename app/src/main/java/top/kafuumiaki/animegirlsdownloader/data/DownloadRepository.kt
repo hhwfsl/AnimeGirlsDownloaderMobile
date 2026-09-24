@@ -23,7 +23,7 @@ class DownloadRepository(
                 imageId = image.id,
                 previewUrl = image.previewUrl,
                 sourceUrl = image.downloadUrl,
-                fileName = "${image.id}.img",
+                fileName = "${image.id}.png",
                 destinationTreeUri = destinationTreeUri,
                 status = DownloadStatus.PENDING,
             )

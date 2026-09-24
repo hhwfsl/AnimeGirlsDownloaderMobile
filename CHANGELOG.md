@@ -2,6 +2,11 @@
 
 本项目遵循 [Semantic Versioning](https://semver.org/)。
 
+## 1.2.6
+
+- 修复下载文件名错误解析 `Content-Disposition` 参数的问题。
+- 下载图片统一使用 `{图片ID}.png` 命名，包括升级前已进入队列的任务。
+
 ## 1.2.5
 
 - 修复从本地化配置 Context 启动 GitHub Custom Tab 时导致应用退出的问题。
